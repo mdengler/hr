@@ -27,8 +27,20 @@ else
     space_character='='
 fi
 
-for i in $(seq 1 $(tput cols));
+# Allow optional bar title
+if [[ -n $2 ]]; then
+	section_header=$2
+	column_width=$(tput cols) # - $(#section_header)
+else
+	section_header=''
+	column_width=$(tput cols)
+fi
+
+for i in $(seq 1 column_width);
 do
+	if [ i -eq column_width / 2]; then
+		echo -n "${section_header}"
+	fi
     echo -n "${space_character}";
 done
 
