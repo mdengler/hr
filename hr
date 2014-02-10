@@ -2,7 +2,7 @@
 
 # The MIT License (MIT)
 #
-# Copyright (c) 2013 Gil Gonçalves
+# Copyright (c) 2013 Gil Gonçalves, 2014 Daniel Nelson
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -21,19 +21,29 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-if [[ -n $1 ]]; then
-    space_character=$1
-else
-    space_character='='
-fi
-
-line=''
 cols=$(tput cols)
 
+underline=''
+for (( i=1; i<cols; i++ ))
+do
+    underline+="_"
+done
+
+line=''
 for (( i=1; i<cols; i++ ))
 do
     line+="${space_character}"
 done
 
+overline=''
+for (( i=1; i<cols; i++ ))
+do
+    overline+="‾"
+done
+
+echo -n "${underline}"
+echo ""
 echo -n "${line}"
+echo ""
+echo -n "${overline}"
 echo ""
