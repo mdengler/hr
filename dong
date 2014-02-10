@@ -27,9 +27,12 @@ else
     space_character='='
 fi
 
-for i in $(seq 1 $(tput cols));
+echo -n "8"
+for i in $(seq 3 $(tput cols));
 do
     echo -n "${space_character}";
 done
+
+echo -n "D"
 
 echo ""
