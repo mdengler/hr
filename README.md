@@ -12,19 +12,19 @@ Use the old `<hr />` tag, but in your terminal. How? Allow me to explain:
 
 ## Setup
 
-    $ curl https://raw.github.com/LuRsT/hr/master/hr > ~/bin/hr
-    $ chmod +x ~/bin/hr
+    $ curl https://raw.github.com/tgrochowicz/hr/master/dong > ~/bin/dong
+    $ chmod +x ~/bin/dong
 
 Note: You should have `~/bin` in your `$PATH` for this to work.
 
 ## How to use it?
 
-    $ hr
-    ================================== # Till the end of your terminal window
+    $ dong
+    8=================================D # Till the end of your terminal window
     $
 
     $ hr *
-    ********************************** # Till the end of your terminal window
+    8*********************************D # Till the end of your terminal window
     $
     
 That's it, no requirements, just pure old `bash` and `tput`, check the source,
