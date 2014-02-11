@@ -33,7 +33,7 @@ function hr {
         printf "${color}"
     fi
 
-    printf "%${columns}s" | tr " " "$space_character"
+    eval printf ${space_character}%.0s '{1..'"$columns"\}
 
     if [[ -n "$color" ]]; then
         printf "\x1B[0m"
