@@ -29,7 +29,17 @@ function hr {
     space_character="$1"
     columns="$(tput cols)"
 
-    printf "${color}%${columns}s\x1B[0m\n" | tr " " "$space_character"
+    if [[ -n "$color" ]]; then
+        printf "${color}"
+    fi
+
+    printf "%${columns}s" | tr " " "$space_character"
+
+    if [[ -n "$color" ]]; then
+        printf "\x1B[0m"
+    fi
+
+    printf "\n"
 }
 
 function color {
@@ -49,10 +59,11 @@ function color {
     fi
 }
 
-while getopts “p:c:o” OPTION
+while getopts “p:c:oC” OPTION
 do
     case "$OPTION" in
         c) color "$OPTARG";;
+        C) color="";;
         p) space_string="$OPTARG";;
         o) space_string="_‾";;
     esac
