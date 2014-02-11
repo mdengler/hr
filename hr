@@ -23,7 +23,7 @@
 
 
 function hr {
-    space_character=$1
+    space_character="$1"
     line=''
     columns=$(tput cols)
 
@@ -32,17 +32,18 @@ function hr {
         line+="${space_character}"
     done
 
-    echo $line
+    echo "${line}"
 }
 
-
-if [[ -n $1 ]]; then
-    space_string=$1
+if [[ -e $1 ]]; then
+    hr "*"
+elif [[ -n $1 ]]; then
+    space_string="$1"
     string_size=${#space_string};
 
     for (( char_index=0; char_index<${string_size}; char_index++ ))
     do
-        hr ${space_string:char_index:1}
+        hr "${space_string:char_index:1}"
     done
 else
     hr "="
