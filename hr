@@ -22,11 +22,12 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-color='\x1B[39m'
+COLOR_ARG_DEFAULT='defaultfg'
 space_string='━'
 
 function hr {
     space_character="$1"
+    color "${2:-${COLOR_ARG_DEFAULT}}"
     columns="$(tput cols)"
 
     if [[ -n "$color" ]]; then
@@ -55,6 +56,7 @@ function color {
             'magenta') color='\x1B[35m';;
             'cyan') color='\x1B[36m';;
             'white') color='\x1B[97m';;
+            'defaultfg') color='\x1B[39m';;
         esac
     fi
 }
@@ -62,8 +64,8 @@ function color {
 while getopts “p:c:oC” OPTION
 do
     case "$OPTION" in
-        c) color "$OPTARG";;
-        C) color="";;
+        c) color_arg="$OPTARG";;
+        C) color_arg="";;
         p) space_string="$OPTARG";;
         o) space_string="_‾";;
     esac
@@ -79,6 +81,6 @@ fi
 string_size="${#space_string}";
 for (( char_index=0; char_index<"${string_size}"; char_index++ ))
 do
-    hr "${space_string:char_index:1}"
+    hr "${space_string:char_index:1}" "${color_arg}"
 done
 
