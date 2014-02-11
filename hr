@@ -26,17 +26,17 @@ color='\x1B[39m'
 space_string='━'
 
 function hr {
-    space_character=$1
-    columns=$(tput cols)
+    space_character="$1"
+    columns="$(tput cols)"
 
     printf "${color}%${columns}s\x1B[0m\n" | tr " " "$space_character"
 }
 
 function color {
-    if [[ $1 != *[!0-9]* ]]; then
+    if [[ "$1" != *[!0-9]* ]]; then
         color="\x1B[38;5;$1m"
     else
-        case $1 in
+        case "$1" in
             'black') color='\x1B[30m';;
             'red') color='\x1B[31m';;
             'green') color='\x1B[32m';;
@@ -51,21 +51,21 @@ function color {
 
 while getopts “p:c:” OPTION
 do
-    case $OPTION in
-        c) color $OPTARG;;
+    case "$OPTION" in
+        c) color "$OPTARG";;
         p) space_string="$OPTARG";;
     esac
 done
 
 # from http://dewine.wordpress.com/2012/02/09/using-getopts-command-in-bash-to-parse-positional-parameters-and-non-option-arguments/
-shift $(expr $OPTIND - 1)
+shift $(expr "$OPTIND" - 1)
 
-if [[ -n $1 ]]; then
-    space_string=$1
-    string_size=${#space_string};
-    for (( char_index=0; char_index<${string_size}; char_index++ ))
+if [[ -n "$1" ]]; then
+    space_string="$1"
+    string_size="${#space_string}";
+    for (( char_index=0; char_index<"${string_size}"; char_index++ ))
     do
-        hr ${space_string:char_index:1}
+        hr "${space_string:char_index:1}"
     done
 else
     hr "$space_string"
