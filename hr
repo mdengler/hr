@@ -24,19 +24,22 @@
 
 COLOR_ARG_DEFAULT='defaultfg'
 space_string='━'
+ansi_arg=""
 
 function hr {
     space_character="$1"
     color "${2:-${COLOR_ARG_DEFAULT}}"
+    ansi_arg="$3"
     columns="$(tput cols)"
 
-    if [[ -n "$color" ]]; then
-        printf "${color}"
+    ansi="${ansi_arg}${color}"
+    if [[ -n "$ansi" ]]; then
+        printf "${ansi}"
     fi
 
     eval printf ${space_character}%.0s '{1..'"$columns"\}
 
-    if [[ -n "$color" ]]; then
+    if [[ -n "$ansi" ]]; then
         printf "\x1B[0m"
     fi
 
@@ -81,6 +84,6 @@ fi
 string_size="${#space_string}";
 for (( char_index=0; char_index<"${string_size}"; char_index++ ))
 do
-    hr "${space_string:char_index:1}" "${color_arg}"
+    hr "${space_string:char_index:1}" "${color_arg}" "${ansi_arg}"
 done
 
