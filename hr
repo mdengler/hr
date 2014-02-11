@@ -49,11 +49,12 @@ function color {
     fi
 }
 
-while getopts “p:c:” OPTION
+while getopts “p:c:o” OPTION
 do
     case "$OPTION" in
         c) color "$OPTARG";;
         p) space_string="$OPTARG";;
+        o) space_string="_‾";;
     esac
 done
 
