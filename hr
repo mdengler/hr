@@ -57,9 +57,16 @@ do
     esac
 done
 
-string_size=${#space_string};
+# from http://dewine.wordpress.com/2012/02/09/using-getopts-command-in-bash-to-parse-positional-parameters-and-non-option-arguments/
+shift $(expr $OPTIND - 1)
 
-for (( char_index=0; char_index<${string_size}; char_index++ ))
-do
-    hr ${space_string:char_index:1}
-done
+if [[ -n $1 ]]; then
+    space_string=$1
+    string_size=${#space_string};
+    for (( char_index=0; char_index<${string_size}; char_index++ ))
+    do
+        hr ${space_string:char_index:1}
+    done
+else
+    hr "$space_string"
+fi
