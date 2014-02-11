@@ -64,10 +64,11 @@ function color {
     fi
 }
 
-while getopts “p:c:boC” OPTION
+while getopts “p:c:boCr” OPTION
 do
     case "$OPTION" in
         b) ansi_arg="${ansi_arg}\x1B[5m";;
+        r) ansi_arg="${ansi_arg}\x1B[7m";;
         c) color_arg="$OPTARG";;
         C) color_arg="";;
         p) space_string="$OPTARG";;
